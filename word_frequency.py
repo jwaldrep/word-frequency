@@ -88,7 +88,7 @@ def display_top_words(word_list, n=20, display_mode='simple'):
             if display_mode == 'normalized histogram':
                 scale_factor = 50 / max_freq
                 bar = '#' * int(freq * scale_factor)
-            print('{}{}{}'.format(word, padding, bar))
+            print('{}{}{} {}'.format(word, padding, bar, freq))
 
         #print(scale_factor, int(max_freq * scale_factor))
 
