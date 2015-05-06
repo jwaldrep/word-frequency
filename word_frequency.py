@@ -6,6 +6,7 @@
 from pprint import pprint as pprint
 import re
 import sys
+from math import ceil as ceil
 
 COMMON_WORDS = (
     "a,able,about,across,after,all,almost,also,am,among,an,and,any,are,as,at,be,"
@@ -70,18 +71,29 @@ def top_words(word_list, n=20, ignore_common=True):
 
 def display_top_words(word_list, n=20, display_mode='simple'):
     top_word_list = top_words(word_list, n)
+
     if display_mode == 'simple':
         for item in top_word_list:
             print('{} {}'.format(*item))
-    elif display_mode == 'histogram':
+
+    elif display_mode == 'histogram' or display_mode=='normalized histogram':
         max_word_length = max([len(item[0]) for item in top_word_list])
+        max_freq = top_word_list[0][1]
+
         for my_tuple in top_word_list:
             word, freq = my_tuple
             padding = ' '*(max_word_length - len(word) + 1)
             bar = '#' * (freq // 6)  #scale to fit on screen
+
+            if display_mode == 'normalized histogram':
+                scale_factor = 50 / max_freq
+                bar = '#' * int(freq * scale_factor)
             print('{}{}{}'.format(word, padding, bar))
+
+        #print(scale_factor, int(max_freq * scale_factor))
+
     else:
-        pass
+        print('Invalid display mode selected')
 
 
 if __name__ == '__main__':
@@ -91,5 +103,5 @@ if __name__ == '__main__':
         word_list = make_word_list(sys.argv[1])
     word_dict = (word_list_frequency(word_list))
     #pprint(top_words(word_dict, n=5 ))
-    display_top_words(word_dict, n=20, display_mode='simple')
-    display_top_words(word_dict, n=20, display_mode='histogram')
+    #display_top_words(word_dict, n=20, display_mode='simple')
+    display_top_words(word_dict, n=20, display_mode='normalized histogram')
