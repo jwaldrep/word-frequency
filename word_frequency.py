@@ -4,11 +4,16 @@
 #Then ouput 20 most frequent words in descending order
 
 
+from pprint import pprint as pprint
 import re
 
-def word_frequency(text):
+
+def word_frequency(word_list):
     """Returns a dictionary of word: frequency for a list of words"""
-    pass
+    word_frequencies = {}
+    for word in word_list:
+        word_frequencies[word] = word_frequencies.get(word, 0) + 1
+    return word_frequencies
 
 def make_word_list(filename):
     """Opens filename and returns a list of all words, ignoring case/punctuation
@@ -29,10 +34,13 @@ def chop_text(a_string):
     return [item for item in a_string.split(' ') if item != ''] #Remove ''
 
 
-def top_words(n = 20):
+def top_words(word_list, n=20):
     """Returns a sorted list of the n most frequent words in decending order"""
-    pass
+    top_words = sorted(word_list.items(), key=lambda x: x[1], reverse=True)
+    return top_words[:n]
 
 if __name__ == '__main__':
-    print(make_word_list('short_sample.txt'))
     #print(chop_text('this is a %#^$&    test \n'))
+    word_list = (make_word_list('short_sample.txt'))
+    word_dict = (word_frequency(word_list))
+    pprint(top_words(word_dict, n=5 ))
