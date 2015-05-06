@@ -47,8 +47,9 @@ def chop_text(a_string):
     """
 
     a_string = a_string.lower()
-    a_string = re.sub(r'\n', ' ', a_string) #Replace newlines with spaces
-    a_string = re.sub(r'[^A-Za-z ]', ' ', a_string) #Allow spaces
+    a_string = re.sub(r'\n', '', a_string) #Replace newlines with spaces
+    a_string = re.sub(r'[^A-Za-z]', '', a_string)
+
     return [item for item in a_string.split(' ') if item != '']
         #Remove ''
 
