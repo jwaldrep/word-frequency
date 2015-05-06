@@ -73,6 +73,13 @@ def display_top_words(word_list, n=20, display_mode='simple'):
     if display_mode == 'simple':
         for item in top_word_list:
             print('{} {}'.format(*item))
+    elif display_mode == 'histogram':
+        max_word_length = max([len(item[0]) for item in top_word_list])
+        for my_tuple in top_word_list:
+            word, freq = my_tuple
+            padding = ' '*(max_word_length - len(word) + 1)
+            bar = '#' * (freq // 6)  #scale to fit on screen
+            print('{}{}{}'.format(word, padding, bar))
     else:
         pass
 
@@ -85,3 +92,4 @@ if __name__ == '__main__':
     word_dict = (word_list_frequency(word_list))
     #pprint(top_words(word_dict, n=5 ))
     display_top_words(word_dict, n=20, display_mode='simple')
+    display_top_words(word_dict, n=20, display_mode='histogram')
