@@ -51,7 +51,7 @@ def display_top_words(word_list, n=20, display_mode='simple'):
 
 if __name__ == '__main__':
     #print(chop_text('this is a %#^$&    test \n'))
-    word_list = (make_word_list('short_sample.txt'))
+    word_list = (make_word_list('sample.txt'))
     word_dict = (word_frequency(word_list))
     #pprint(top_words(word_dict, n=5 ))
-    display_top_words(word_dict, n=5, display_mode='simple')
+    display_top_words(word_dict, n=20, display_mode='simple')
