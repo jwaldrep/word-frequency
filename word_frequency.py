@@ -1,12 +1,7 @@
-"""Improvements:
-    don't count we're as were
-    figure out how to cleanly import COMMON_WORDS
-"""
 
 from pprint import pprint as pprint
 import re
 import sys
-from math import ceil as ceil
 
 COMMON_WORDS = (
     "a,able,about,across,after,all,almost,also,am,among,an,and,any,are,as,at,be,"
@@ -17,6 +12,7 @@ COMMON_WORDS = (
     "since,so,some,than,that,the,their,them,then,there,these,they,this,tis,to,too,"
     "twas,us,wants,was,we,were,what,when,where,which,while,who,whom,why,will,with,"
     "would,yet,you,your").split(',')
+
 
 def word_list_frequency(word_list):
     """Returns a dictionary of word: frequency for a provided list of words"""
@@ -54,7 +50,7 @@ def chop_text(a_string):
     a_string = re.sub(r'\n', ' ', a_string) #Replace newlines with spaces
     a_string = re.sub(r'[^A-Za-z ]', '', a_string) #Allow spaces
     return [item for item in a_string.split(' ') if item != '']
-        #Remove '' and split on \n without
+        #Remove ''
 
 
 def top_words(word_list, n=20, ignore_common=True):
