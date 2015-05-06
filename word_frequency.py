@@ -35,12 +35,23 @@ def chop_text(a_string):
 
 
 def top_words(word_list, n=20):
-    """Returns a sorted list of the n most frequent words in decending order"""
+    """Returns a sorted list of the n most frequent words in decending order
+       Returns list of tuples of ('word', frequency)
+    """
     top_words = sorted(word_list.items(), key=lambda x: x[1], reverse=True)
     return top_words[:n]
+
+def display_top_words(word_list, n=20, display_mode='simple'):
+    top_word_list = top_words(word_list, n)
+    if display_mode == 'simple':
+        for item in top_word_list:
+            print('{} {}'.format(*item))
+    else:
+        pass
 
 if __name__ == '__main__':
     #print(chop_text('this is a %#^$&    test \n'))
     word_list = (make_word_list('short_sample.txt'))
     word_dict = (word_frequency(word_list))
-    pprint(top_words(word_dict, n=5 ))
+    #pprint(top_words(word_dict, n=5 ))
+    display_top_words(word_dict, n=5, display_mode='simple')
