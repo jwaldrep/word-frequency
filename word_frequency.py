@@ -2,8 +2,10 @@
     don't count we're as were
     figure out how to cleanly import COMMON_WORDS
 """
+
 from pprint import pprint as pprint
 import re
+import sys
 
 COMMON_WORDS = (
     "a,able,about,across,after,all,almost,also,am,among,an,and,any,are,as,at,be,"
@@ -78,6 +80,8 @@ def display_top_words(word_list, n=20, display_mode='simple'):
 if __name__ == '__main__':
     #print(chop_text('this is a %#^$&    test \n'))
     word_list = (make_word_list('sample.txt'))
+    if len(sys.argv) > 1:
+        word_list = make_word_list(sys.argv[1])
     word_dict = (word_list_frequency(word_list))
     #pprint(top_words(word_dict, n=5 ))
     display_top_words(word_dict, n=20, display_mode='simple')
