@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from pprint import pprint as pprint
 import re
 import sys
 
@@ -94,19 +93,13 @@ def display_top_words(word_list, n=20, display_mode='simple'):
                 scale_factor = 50 / max_freq
                 bar = '#' * int(freq * scale_factor)
             print('{}{}{} {}'.format(word, padding, bar, freq))
-
-            # print(scale_factor, int(max_freq * scale_factor))
-
     else:
         print('Invalid display mode selected')
 
 
 if __name__ == '__main__':
-    # print(chop_text('this is a %#^$&    test \n'))
     word_list = (make_word_list('sample.txt'))
     if len(sys.argv) > 1:
         word_list = make_word_list(sys.argv[1])
     word_dict = (word_list_frequency(word_list))
-    # pprint(top_words(word_dict, n=5 ))
-    # display_top_words(word_dict, n=20, display_mode='simple')
     display_top_words(word_dict, n=20, display_mode='normalized histogram')
