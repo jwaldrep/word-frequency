@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python3
 from pprint import pprint as pprint
 import re
 import sys

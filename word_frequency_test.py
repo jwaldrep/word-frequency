@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import unittest
 from word_frequency import word_frequency
 
